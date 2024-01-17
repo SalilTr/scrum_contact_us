@@ -1,0 +1,11 @@
+<!-- app/views/contacts/show.html.erb -->
+<h1>Contact Details</h1>
+
+<p><strong>Description:</strong> <%= @contact.description %></p>
+<p><strong>First Name:</strong> <%= @contact.firstname %></p>
+<p><strong>Last Name:</strong> <%= @contact.lastname %></p>
+<p><strong>Email:</strong> <%= @contact.email %></p>
+<p><strong>Contact Type:</strong> <%= @contact.contact_type %></p>
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>

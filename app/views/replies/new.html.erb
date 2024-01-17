@@ -1,0 +1,13 @@
+<%= form_with(model: [@contact, @reply], local: true) do |form| %>
+  <!-- Render fields from the associated Contact -->
+  <%= form.text_field :description, readonly: true %>
+  <%= form.text_field :firstname, readonly: true %>
+  <%= form.text_field :lastname, readonly: true %>
+  <%= form.text_field :email, readonly: true %>
+  <%= form.text_field :contact_type, readonly: true %>
+
+  <!-- Allow the user to fill in the content field -->
+  <%= form.text_area :content %>
+
+  <%= form.submit 'Create Reply' %>
+<% end %>

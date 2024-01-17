@@ -1,0 +1,164 @@
+
+
+
+
+
+
+
+
+<!-- app/views/contacts/new.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Contact</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .field {
+      margin-bottom: 15px;
+      display:flex;
+      justify-content: space-between;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 80%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .radio_label {
+      margin-left: 5px;
+    }
+
+    .actions {
+      margin-top: 15px;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #error_explanation {
+      color: #d9534f;
+      background-color: #f2dede;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ebccd1;
+      border-radius: 4px;
+    }
+
+    #error_explanation h2 {
+      margin-top: 0;
+    }
+
+    #error_explanation ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #error_explanation li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>New Contact</h1>
+
+
+
+<%= form_with(model: @contact, local: true) do |form| %>
+    <%= link_to 'Back', contacts_path %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+        <% @contact.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="field">
+    <%= form.label :contact_type %>
+    <div>
+      <%= form.radio_button :contact_type, :suggestion %>
+      <%= form.label :suggestion, class: "radio_label" %>
+    </div>
+    <div>
+      <%= form.radio_button :contact_type, :feedback %>
+      <%= form.label :feedback, class: "radio_label" %>
+    </div>
+    <div>
+      <%= form.radio_button :contact_type, :ask_a_query %>
+      <%= form.label :ask_a_query, class: "radio_label" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :firstname %>
+    <%= form.text_field :firstname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+<div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+ 
+
+  <div class="actions">
+    <%= form.submit 'Create Contact' %>
+  </div>
+<% end %>
+
+</body>
+</html>
